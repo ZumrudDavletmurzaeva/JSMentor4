@@ -24,24 +24,17 @@ function debounce(fn, ms) {
     }
 }
 
-
 async function searchRepositories(e) {
-  let repo = e.target.value
-  let  repoOptions = await fetch(`https://api.github.com/search/repositories?q=${repo}&sort=stars&page=1&per_page=5`)
+  let  repoOptions = await fetch(`https://api.github.com/search/repositories?q=${e.target.value}&sort=stars&page=1&per_page=5`)
     .then((response)=>response.json())
     .catch((e)=> repoList(null))
   repoList(repoOptions);
 }
 
-
-
-
 function repoListRemove(arr) {
   for (let item of arr) 
   item.hidden = true;
 }
-
-
 
 function addChosen(e) {
   if (!e.target.classList.contains('search_repos'))
@@ -55,8 +48,6 @@ function addChosen(e) {
 
 }
   
-
-
 function repoList(repositors) {
   repoListRemove(searchRepos); 
   if (!repositors.items) return;
